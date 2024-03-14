@@ -68,6 +68,7 @@ function RootLayoutNav() {
       <Stack.Screen
         name="(modals)/booking"
         options={{
+          title: "booking",
           presentation: "transparentModal",
           animation: "fade",
           headerLeft: () => (
