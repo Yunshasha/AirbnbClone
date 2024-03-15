@@ -2,6 +2,8 @@
 
 This is an Airbnb clone project using Expo & React Native
 
+<img src= 'https://github.com/Yunshasha/AirbnbClone/blob/main/assets/images/airbnbHomeScreen.png' style='width: 400px' />
+
 ### clone and run
 
 ```
