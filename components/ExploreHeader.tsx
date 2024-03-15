@@ -1,15 +1,17 @@
 import {
   View,
   Text,
-  SafeAreaView,
   TouchableOpacity,
   StatusBar,
+  ScrollView,
+  Animated,
 } from "react-native";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { StyleSheet } from "react-native";
 import { Link } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
+import * as Haptics from "expo-haptics";
 
 const categories = [
   {
@@ -42,10 +44,28 @@ const categories = [
   },
 ];
 
-const ExploreHeader = () => {
+interface Props {
+  onCategoryChanged: (category: string) => void;
+}
+
+const ExploreHeader = ({ onCategoryChanged }: Props) => {
+  const itemsRef = useRef<Array<TouchableOpacity | null>>([]);
+  const scrollRef = useRef<ScrollView>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const selectCategory = (index: number) => {
+    const selected = itemsRef.current[index];
+    setActiveIndex(index);
+
+    selected?.measure((x) =>
+      scrollRef.current?.scrollTo({ x: x, y: 0, animated: true })
+    );
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    onCategoryChanged(categories[index].name);
+  };
   return (
     <View style={styles.container}>
-      <View style={{ height: 80, backgroundColor: "#fff" }}>
+      <View style={{ height: 125, backgroundColor: "#fff" }}>
         <View style={styles.actionRow}>
           <Link href={"/(modals)/booking"} asChild>
             <TouchableOpacity style={styles.seachBtn}>
@@ -62,6 +82,44 @@ const ExploreHeader = () => {
             <Ionicons name="options-outline" size={24} />
           </TouchableOpacity>
         </View>
+        <ScrollView
+          ref={scrollRef}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            alignItems: "center",
+            gap: 20,
+            paddingHorizontal: 16,
+          }}
+        >
+          {categories.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              ref={(el) => (itemsRef.current[index] = el)}
+              style={
+                activeIndex === index
+                  ? styles.categoriesBtnActive
+                  : styles.categoriesBtn
+              }
+              onPress={() => selectCategory(index)}
+            >
+              <MaterialIcons
+                name={item.icon as any}
+                size={24}
+                color={activeIndex === index ? "#000" : Colors.grey}
+              />
+              <Text
+                style={
+                  activeIndex === index
+                    ? styles.categoryTextActive
+                    : styles.categoryText
+                }
+              >
+                {item.name}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -111,6 +169,30 @@ const styles = StyleSheet.create({
       width: 2,
       height: 2,
     },
+  },
+  categoryText: {
+    fontSize: 14,
+    fontFamily: "mon-sb",
+    color: Colors.grey,
+  },
+  categoryTextActive: {
+    fontSize: 14,
+    fontFamily: "mon-sb",
+    color: "#000",
+  },
+  categoriesBtn: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: 8,
+  },
+  categoriesBtnActive: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    borderBottomColor: "#000",
+    borderBottomWidth: 2,
+    paddingBottom: 8,
   },
 });
 

@@ -7,7 +7,7 @@ const Page = () => {
   console.log("id :", id);
   return (
     <View>
-      <Text>Page</Text>
+      <Text>detail Page</Text>
     </View>
   );
 };
