@@ -84,7 +84,7 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
         </View>
         <ScrollView
           ref={scrollRef}
-          horizontal
+          horizontal={true}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
             alignItems: "center",
