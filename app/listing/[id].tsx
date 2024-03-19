@@ -23,7 +23,7 @@ const Page = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Image source={{ uri: listing.xl_picture_url }} style={styles.image} />
         <View style={styles.infoContainer}>
           <Text style={styles.roomName}>{listing.name}</Text>

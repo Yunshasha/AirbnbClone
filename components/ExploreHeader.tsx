@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StatusBar,
   ScrollView,
-  Animated,
+  Dimensions,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -43,6 +43,7 @@ const categories = [
     icon: "nature-people",
   },
 ];
+const { width } = Dimensions.get("window");
 
 interface Props {
   onCategoryChanged: (category: string) => void;
