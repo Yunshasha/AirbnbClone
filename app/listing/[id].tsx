@@ -6,9 +6,10 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  Share,
 } from "react-native";
-import React from "react";
-import { useLocalSearchParams } from "expo-router";
+import React, { useLayoutEffect } from "react";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 import listingData from "@/assets/data/airbnb-listings.json";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
@@ -20,10 +21,52 @@ const { width } = Dimensions.get("window");
 const Page = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
   const listing = (listingData as any[]).find((item) => item.id === id);
+  const navigation = useNavigation();
+
+  const shareListing = async () => {
+    try {
+      await Share.share({
+        title: listing.name,
+        url: listing.listing_url,
+      });
+    } catch (error) {
+      console.log("share error");
+    }
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "",
+      headerTransparent: true,
+      headerRight: () => (
+        <View style={styles.bar}>
+          <TouchableOpacity style={styles.roundBtn} onPress={shareListing}>
+            <Ionicons name="share-outline" size={22} color={"#000"} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.roundBtn}>
+            <Ionicons name="heart-outline" size={22} color={"#000"} />
+          </TouchableOpacity>
+        </View>
+      ),
+      headerLeft: () => (
+        <View style={styles.bar}>
+          <TouchableOpacity
+            style={styles.roundBtn}
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons name="chevron-back" size={22} color={"#000"} />
+          </TouchableOpacity>
+        </View>
+      ),
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 75 }}
+      >
         <Image source={{ uri: listing.xl_picture_url }} style={styles.image} />
         <View style={styles.infoContainer}>
           <Text style={styles.roomName}>{listing.name}</Text>
@@ -139,6 +182,21 @@ const styles = StyleSheet.create({
   footerPrice: {
     fontSize: 18,
     fontFamily: "mon-sb",
+  },
+  bar: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+  },
+  roundBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 40,
+    backgroundColor: "#fff",
+    color: Colors.primary,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 export default Page;

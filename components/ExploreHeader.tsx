@@ -126,9 +126,6 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
   );
 };
 
-{
-  /*  */
-}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
