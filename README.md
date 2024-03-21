@@ -17,3 +17,4 @@ You can find tutorial of this project [Simon Grimm](https://www.youtube.com/watc
 
 <br />
 You can find all the icons from [expo@icon](https://icons.expo.fyi/Index)
+the react native map clustering library [venits](https://github.com/venits/react-native-map-clustering)

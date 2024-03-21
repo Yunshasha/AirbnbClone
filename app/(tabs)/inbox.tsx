@@ -29,10 +29,12 @@ const Page = () => {
         {" "}
         Messages from your host will appear here.
       </Text>
-      <Image
-        source={require("@/assets/images/inboxImg.png")}
-        style={{ width: "100%" }}
-      />
+      <View style={{ marginHorizontal: 10 }}>
+        <Image
+          source={require("@/assets/images/inboxImg.png")}
+          style={{ width: "100%" }}
+        />
+      </View>
     </View>
   );
 };

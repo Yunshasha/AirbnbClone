@@ -4,7 +4,8 @@ import { Stack, router, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
-import { TouchableOpacity, useColorScheme } from "react-native";
+import { TouchableOpacity, View, useColorScheme } from "react-native";
+import { Provider } from "react-redux";
 
 export {
   // Catch any errors thrown by the Layout component.

@@ -19,9 +19,6 @@ const Page = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const height = StatusBar.currentHeight;
-  const log = () => {
-    console.log("click");
-  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
