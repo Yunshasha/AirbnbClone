@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useMemo, useState } from "react";
 import { Stack, useRouter } from "expo-router";
 import ExploreHeader from "@/components/ExploreHeader";

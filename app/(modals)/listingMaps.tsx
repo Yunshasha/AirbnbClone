@@ -24,6 +24,12 @@ const ListingsMap = () => {
         style={StyleSheet.absoluteFill}
         showsUserLocation
         provider={PROVIDER_GOOGLE}
+        initialRegion={{
+          latitude: 52.520008,
+          longitude: 13.404954,
+          latitudeDelta: 5,
+          longitudeDelta: 5,
+        }}
       >
         {listings.features.map((item: any) => (
           <Marker
