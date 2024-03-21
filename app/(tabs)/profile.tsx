@@ -15,18 +15,6 @@ import { Fontisto, Octicons } from "@expo/vector-icons";
 import { FlatList } from "react-native";
 import UserFuncs from "../(modals)/userFuncs";
 
-const UserIcon = () => {
-  return (
-    <Link href={"/(modals)/userFuncs"} asChild>
-      <TouchableOpacity
-        style={{ position: "absolute", right: 30, top: 10, zIndex: 999999 }}
-      >
-        <Fontisto name="nav-icon-grid-a" size={24} color={Colors.primary} />
-      </TouchableOpacity>
-    </Link>
-  );
-};
-
 const Page = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
@@ -231,6 +219,15 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: "center",
     paddingHorizontal: 16,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 5,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
 
