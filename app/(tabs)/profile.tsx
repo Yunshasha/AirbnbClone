@@ -6,15 +6,29 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React, { useLayoutEffect, useMemo } from "react";
+import React, { useLayoutEffect, useMemo, useState } from "react";
 import userInfo from "@/assets/data/userProfile.json";
-import { Link, useNavigation } from "expo-router";
+import { Link, Stack, useNavigation } from "expo-router";
 import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
 import { Fontisto, Octicons } from "@expo/vector-icons";
 import { FlatList } from "react-native";
+import UserFuncs from "../(modals)/userFuncs";
+
+const UserIcon = () => {
+  return (
+    <Link href={"/(modals)/userFuncs"} asChild>
+      <TouchableOpacity
+        style={{ position: "absolute", right: 30, top: 10, zIndex: 999999 }}
+      >
+        <Fontisto name="nav-icon-grid-a" size={24} color={Colors.primary} />
+      </TouchableOpacity>
+    </Link>
+  );
+};
 
 const Page = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const height = StatusBar.currentHeight;
   const log = () => {
@@ -36,15 +50,21 @@ const Page = () => {
 
   return (
     <View style={[defaultStyles.container, { marginTop: height }]}>
+      <Stack.Screen options={{ headerShown: false }} />
+      {modalVisible && (
+        <UserFuncs
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
+      )}
       <View style={styles.infoContainer}>
-        <Link href={"/(modals)/userFuncs"} asChild>
-          <TouchableOpacity
-            style={{ position: "absolute", right: 30, top: 10, zIndex: 999999 }}
-            onPress={log}
-          >
-            <Fontisto name="nav-icon-grid-a" size={24} color={Colors.primary} />
-          </TouchableOpacity>
-        </Link>
+        <TouchableOpacity
+          style={{ position: "absolute", right: 30, top: 10, zIndex: 999999 }}
+          onPress={() => setModalVisible(true)}
+        >
+          <Fontisto name="nav-icon-grid-a" size={24} color={Colors.primary} />
+        </TouchableOpacity>
+
         <View style={{ alignItems: "center", gap: 10 }}>
           <Image
             source={{ uri: userInfo.profile_picture_url }}

@@ -52,20 +52,7 @@ function RootLayoutNav() {
     <Stack>
       <Stack.Screen
         name="(tabs)"
-        options={{ headerShown: false, headerTransparent: false }}
-      />
-      <Stack.Screen
-        name="(modals)/login"
-        options={{
-          title: "Log in or sign up",
-          headerTitleStyle: { fontFamily: "mon-sb" },
-          presentation: "modal",
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
-            </TouchableOpacity>
-          ),
-        }}
+        options={{ headerShown: false, headerTransparent: true }}
       />
       <Stack.Screen name="listing/[id]" />
       <Stack.Screen
