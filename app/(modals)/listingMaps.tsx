@@ -3,13 +3,15 @@ import React, { useLayoutEffect, useMemo } from "react";
 import { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { defaultStyles } from "@/constants/Styles";
 import { useNavigation, useRouter } from "expo-router";
-import MapView from "react-native-maps";
+// import MapView from "react-native-maps";
 import listingGeoData from "@/assets/data/airbnb-listings.geo.json";
+import MapView from "react-native-map-clustering";
+import listingGeoProp from "@/interfaces/listingGeo";
 
 const ListingsMap = () => {
   const router = useRouter();
   const listings = useMemo(() => listingGeoData as any, []);
-  const onMarkSelected = (item: any) => {
+  const onMarkSelected = (item: listingGeoProp) => {
     router.push(`/listing/${item.properties.id}`);
   };
   const navigation = useNavigation();
@@ -30,6 +32,9 @@ const ListingsMap = () => {
           latitudeDelta: 4,
           longitudeDelta: 4,
         }}
+        clusterColor="#fff"
+        clusterTextColor="#000"
+        clusterFontFamily="mon-sb"
       >
         {listings.features.map((item: any) => (
           <Marker
@@ -54,7 +59,8 @@ const styles = StyleSheet.create({
   marker: {
     alignItems: "center",
     backgroundColor: "#fff",
-    padding: 6,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
     borderRadius: 12,
     elevation: 5,
     shadowOpacity: 0.1,
@@ -66,6 +72,7 @@ const styles = StyleSheet.create({
   },
   markerText: {
     fontFamily: "mon-sb",
+    fontSize: 15,
   },
 });
 

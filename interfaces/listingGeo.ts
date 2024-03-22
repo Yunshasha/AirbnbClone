@@ -1,4 +1,15 @@
-export default interface RootObject {
+interface RootObject {
+  type: string;
+  features: Feature[];
+}
+
+export default interface Feature {
+  type: string;
+  geometry: Geometry;
+  properties: Properties;
+}
+
+interface Properties {
   id: string;
   listing_url: string;
   scrape_id: string;
@@ -86,13 +97,7 @@ export default interface RootObject {
   cancellation_policy: string;
   calculated_host_listings_count: number;
   reviews_per_month: number;
-  geolocation: Geolocation;
   features: string[];
-}
-
-interface Geolocation {
-  lon: number;
-  lat: number;
 }
 
 interface Pictureurl {
@@ -106,4 +111,9 @@ interface Pictureurl {
   last_synchronized: string;
   color_summary: string[];
   height: number;
+}
+
+interface Geometry {
+  type: string;
+  coordinates: number[];
 }

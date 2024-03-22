@@ -11,6 +11,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { defaultStyles } from "@/constants/Styles";
 import { Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import ListingsProp from "@/interfaces/listing";
 
 interface Props {
   listings: any[];
@@ -28,7 +29,7 @@ const Listing = ({ listings: items, category }: Props) => {
     }, 200);
   }, [category]);
 
-  const renderRow: ListRenderItem<any> = ({ item }) => (
+  const renderRow: ListRenderItem<ListingsProp> = ({ item }) => (
     <Link href={`/listing/${item.id}`} asChild>
       <TouchableOpacity style={styles.listing}>
         <View>
