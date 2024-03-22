@@ -4,7 +4,8 @@ import { Stack, useRouter } from "expo-router";
 import ExploreHeader from "@/components/ExploreHeader";
 import Listing from "@/components/Listing";
 import listingData from "@/assets/data/airbnb-listings.json";
-import { FontAwesome6 } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Colors from "@/constants/Colors";
 
 const Page = () => {
   const [category, setCategory] = useState("Tiny Homes");
@@ -26,7 +27,11 @@ const Page = () => {
         style={styles.mapBtn}
         onPress={() => router.push("/(modals)/listingMaps")}
       >
-        <FontAwesome6 name="map-location-dot" size={24} color="black" />
+        <MaterialCommunityIcons
+          name="map-search-outline"
+          size={24}
+          color={Colors.dark}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -41,11 +46,13 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 14,
     borderRadius: 14,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Colors.grey,
 
-    elevation: 4,
+    elevation: 5,
     shadowColor: "#000",
     shadowOffset: {
-      width: 3,
+      width: 1,
       height: 10,
     },
   },

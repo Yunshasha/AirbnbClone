@@ -112,7 +112,7 @@ const Page = () => {
         >
           <TouchableOpacity style={styles.footerText}>
             <Text style={styles.footerPrice}>€{listing.price} </Text>
-            <Text>night</Text>
+            <Text>{"/ "}night</Text>
           </TouchableOpacity>
 
           <TouchableOpacity

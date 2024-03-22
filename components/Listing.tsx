@@ -14,7 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 import ListingsProp from "@/interfaces/listing";
 
 interface Props {
-  listings: any[];
+  listings: ListingsProp[];
   category: string;
 }
 
@@ -63,7 +63,7 @@ const Listing = ({ listings: items, category }: Props) => {
         </Text>
         <View style={{ flexDirection: "row", gap: 4, paddingLeft: 5 }}>
           <Text style={{ fontFamily: "mon-sb" }}>€ {item.price}</Text>
-          <Text style={{ fontFamily: "mon" }}>night</Text>
+          <Text style={{ fontFamily: "mon" }}>{"/ "}night</Text>
         </View>
       </TouchableOpacity>
     </Link>

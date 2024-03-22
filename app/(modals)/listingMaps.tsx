@@ -7,6 +7,7 @@ import { useNavigation, useRouter } from "expo-router";
 import listingGeoData from "@/assets/data/airbnb-listings.geo.json";
 import MapView from "react-native-map-clustering";
 import listingGeoProp from "@/interfaces/listingGeo";
+import Colors from "@/constants/Colors";
 
 const ListingsMap = () => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const ListingsMap = () => {
   const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "",
+      headerTitle: "",
     });
   }, []);
   return (
@@ -73,6 +74,21 @@ const styles = StyleSheet.create({
   markerText: {
     fontFamily: "mon-sb",
     fontSize: 15,
+  },
+  bar: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+  },
+  roundBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 40,
+    backgroundColor: "#fff",
+    color: Colors.primary,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
