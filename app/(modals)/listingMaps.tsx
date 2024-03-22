@@ -27,8 +27,8 @@ const ListingsMap = () => {
         initialRegion={{
           latitude: 52.520008,
           longitude: 13.404954,
-          latitudeDelta: 5,
-          longitudeDelta: 5,
+          latitudeDelta: 4,
+          longitudeDelta: 4,
         }}
       >
         {listings.features.map((item: any) => (
