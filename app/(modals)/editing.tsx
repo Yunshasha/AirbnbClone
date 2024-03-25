@@ -7,12 +7,14 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
+  SafeAreaView,
 } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
 import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
 import userInfo from "@/assets/data/userProfile.json";
+import { Ionicons } from "@expo/vector-icons";
 
 const Page = () => {
   const navigation = useNavigation();
@@ -37,75 +39,82 @@ const Page = () => {
           </Text>
         </TouchableOpacity>
       ),
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={22} color={"#000"} />
+        </TouchableOpacity>
+      ),
     });
   }, []);
   return (
-    <View style={[defaultStyles.container, { marginTop: height }]}>
-      <View style={styles.infoContainer}>
-        <View style={{ alignItems: "center", gap: 10 }}>
-          <Image
-            source={{ uri: userInfo.profile_picture_url }}
-            style={styles.profileImg}
-          />
-          <Text style={{ fontSize: 15, fontFamily: "mon" }}>
-            Member since {userInfo.member_since}
-          </Text>
+    <SafeAreaView style={defaultStyles.container}>
+      <View style={[defaultStyles.container, { marginTop: height }]}>
+        <View style={styles.infoContainer}>
+          <View style={{ alignItems: "center", gap: 10 }}>
+            <Image
+              source={{ uri: userInfo.profile_picture_url }}
+              style={styles.profileImg}
+            />
+            <Text style={{ fontSize: 15, fontFamily: "mon" }}>
+              Member since {userInfo.member_since}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.editContainer}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoTitle}>Name</Text>
+              <TextInput placeholder={userInfo.name} />
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoTitle}>Birth Day</Text>
+              <TextInput placeholder={userInfo.birthdate} />
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoTitle}>Gender</Text>
+              <TextInput placeholder={userInfo.gender} />
+            </View>
+            <View style={styles.divider} />
+            <View style={{ paddingVertical: 10 }}>
+              <Text style={styles.infoTitle}>Bio</Text>
+              <TextInput
+                multiline
+                numberOfLines={4}
+                maxLength={45}
+                placeholder={userInfo.bio}
+              />
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoTitle}>Location</Text>
+              <TextInput placeholder={userInfo.location} />
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoTitle}>Language</Text>
+              <TextInput placeholder={userInfo.language} />
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoTitle}>Email</Text>
+              <TextInput placeholder={userInfo.email} />
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoTitle}>Phone</Text>
+              <TextInput placeholder={userInfo.phone} />
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoTitle}>Occupation</Text>
+              <TextInput placeholder={userInfo.occupation} />
+            </View>
+          </ScrollView>
         </View>
       </View>
-      <View style={styles.editContainer}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.infoBlock}>
-            <Text style={styles.infoTitle}>Name</Text>
-            <TextInput placeholder={userInfo.name} />
-          </View>
-          <View style={styles.divider} />
-          <View style={styles.infoBlock}>
-            <Text style={styles.infoTitle}>Birth Day</Text>
-            <TextInput placeholder={userInfo.birthdate} />
-          </View>
-          <View style={styles.divider} />
-          <View style={styles.infoBlock}>
-            <Text style={styles.infoTitle}>Gender</Text>
-            <TextInput placeholder={userInfo.gender} />
-          </View>
-          <View style={styles.divider} />
-          <View style={{ paddingVertical: 10 }}>
-            <Text style={styles.infoTitle}>Bio</Text>
-            <TextInput
-              multiline
-              numberOfLines={4}
-              maxLength={45}
-              placeholder={userInfo.bio}
-            />
-          </View>
-          <View style={styles.divider} />
-          <View style={styles.infoBlock}>
-            <Text style={styles.infoTitle}>Location</Text>
-            <TextInput placeholder={userInfo.location} />
-          </View>
-          <View style={styles.divider} />
-          <View style={styles.infoBlock}>
-            <Text style={styles.infoTitle}>Language</Text>
-            <TextInput placeholder={userInfo.language} />
-          </View>
-          <View style={styles.divider} />
-          <View style={styles.infoBlock}>
-            <Text style={styles.infoTitle}>Email</Text>
-            <TextInput placeholder={userInfo.email} />
-          </View>
-          <View style={styles.divider} />
-          <View style={styles.infoBlock}>
-            <Text style={styles.infoTitle}>Phone</Text>
-            <TextInput placeholder={userInfo.phone} />
-          </View>
-          <View style={styles.divider} />
-          <View style={styles.infoBlock}>
-            <Text style={styles.infoTitle}>Occupation</Text>
-            <TextInput placeholder={userInfo.occupation} />
-          </View>
-        </ScrollView>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -138,7 +147,7 @@ const styles = StyleSheet.create({
   infoBlock: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 10,
+    paddingVertical: 15,
   },
   infoTitle: {
     fontSize: 15,

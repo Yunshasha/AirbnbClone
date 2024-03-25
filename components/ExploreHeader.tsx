@@ -5,6 +5,7 @@ import {
   StatusBar,
   ScrollView,
   Dimensions,
+  SafeAreaView,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -12,6 +13,7 @@ import { Link } from "expo-router";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
 import * as Haptics from "expo-haptics";
+import { defaultStyles } from "@/constants/Styles";
 
 const categories = [
   {
@@ -65,64 +67,66 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
     onCategoryChanged(categories[index].name);
   };
   return (
-    <View style={styles.container}>
-      <View style={{ height: 125, backgroundColor: "#fff" }}>
-        <View style={styles.actionRow}>
-          <Link href={"/(modals)/booking"} asChild>
-            <TouchableOpacity style={styles.seachBtn}>
-              <Ionicons name="search" size={24} />
-              <View>
-                <Text style={{ fontFamily: "mon-sb" }}>Where to?</Text>
-                <Text style={{ fontFamily: "mon", color: Colors.grey }}>
-                  Anywhere . Anyweek
-                </Text>
-              </View>
+    <SafeAreaView style={defaultStyles.container}>
+      <View style={styles.container}>
+        <View style={{ height: 125, backgroundColor: "#fff" }}>
+          <View style={styles.actionRow}>
+            <Link href={"/(modals)/booking"} asChild>
+              <TouchableOpacity style={styles.seachBtn}>
+                <Ionicons name="search" size={24} />
+                <View>
+                  <Text style={{ fontFamily: "mon-sb" }}>Where to?</Text>
+                  <Text style={{ fontFamily: "mon", color: Colors.grey }}>
+                    Anywhere . Anyweek
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Link>
+            <TouchableOpacity style={styles.filterBtn}>
+              <Ionicons name="options-outline" size={24} />
             </TouchableOpacity>
-          </Link>
-          <TouchableOpacity style={styles.filterBtn}>
-            <Ionicons name="options-outline" size={24} />
-          </TouchableOpacity>
-        </View>
-        <ScrollView
-          ref={scrollRef}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            alignItems: "center",
-            gap: 20,
-            paddingHorizontal: 16,
-          }}
-        >
-          {categories.map((item, index) => (
-            <TouchableOpacity
-              key={index}
-              ref={(el) => (itemsRef.current[index] = el)}
-              style={
-                activeIndex === index
-                  ? styles.categoriesBtnActive
-                  : styles.categoriesBtn
-              }
-              onPress={() => selectCategory(index)}
-            >
-              <MaterialIcons
-                name={item.icon as any}
-                size={24}
-                color={activeIndex === index ? "#000" : Colors.grey}
-              />
-              <Text
+          </View>
+          <ScrollView
+            ref={scrollRef}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              alignItems: "center",
+              gap: 20,
+              paddingHorizontal: 16,
+            }}
+          >
+            {categories.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                ref={(el) => (itemsRef.current[index] = el)}
                 style={
                   activeIndex === index
-                    ? styles.categoryTextActive
-                    : styles.categoryText
+                    ? styles.categoriesBtnActive
+                    : styles.categoriesBtn
                 }
+                onPress={() => selectCategory(index)}
               >
-                {item.name}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+                <MaterialIcons
+                  name={item.icon as any}
+                  size={24}
+                  color={activeIndex === index ? "#000" : Colors.grey}
+                />
+                <Text
+                  style={
+                    activeIndex === index
+                      ? styles.categoryTextActive
+                      : styles.categoryText
+                  }
+                >
+                  {item.name}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

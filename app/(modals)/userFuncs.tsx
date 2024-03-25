@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Text,
+  SafeAreaView,
 } from "react-native";
 import {
   Ionicons,
@@ -25,71 +26,77 @@ const userFuncs = ({ modalVisible, setModalVisible }: any) => {
         setModalVisible(!modalVisible);
       }}
     >
-      <View style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
-        <View style={styles.modalView}>
-          <View style={styles.funcRow}>
-            <View>
-              <TouchableOpacity style={styles.funcBlock}>
-                <Ionicons name="notifications-outline" size={26} color="#fff" />
-                <Text style={styles.funcText}>Notifications</Text>
-              </TouchableOpacity>
+      <SafeAreaView>
+        <View style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
+          <View style={styles.modalView}>
+            <View style={styles.funcRow}>
+              <View>
+                <TouchableOpacity style={styles.funcBlock}>
+                  <Ionicons
+                    name="notifications-outline"
+                    size={26}
+                    color="#fff"
+                  />
+                  <Text style={styles.funcText}>Notifications</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity style={styles.funcBlock}>
+                  <MaterialIcons name="cabin" size={26} color="#fff" />
+                  <Text style={styles.funcText}>List a Space</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity style={styles.funcBlock}>
+                  <AntDesign name="adduser" size={26} color="#fff" />
+                  <Text style={styles.funcText}>Add Account</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View>
-              <TouchableOpacity style={styles.funcBlock}>
-                <MaterialIcons name="cabin" size={26} color="#fff" />
-                <Text style={styles.funcText}>List a Space</Text>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity style={styles.funcBlock}>
-                <AntDesign name="adduser" size={26} color="#fff" />
-                <Text style={styles.funcText}>Add Account</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.funcRow}>
-            <View>
-              <TouchableOpacity style={styles.funcBlock}>
-                <FontAwesome5 name="user-friends" size={26} color="#fff" />
-                <Text style={styles.funcText}>Add Friends</Text>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity style={styles.funcBlock}>
-                <MaterialIcons name="payment" size={26} color="#fff" />
+            <View style={styles.funcRow}>
+              <View>
+                <TouchableOpacity style={styles.funcBlock}>
+                  <FontAwesome5 name="user-friends" size={26} color="#fff" />
+                  <Text style={styles.funcText}>Add Friends</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity style={styles.funcBlock}>
+                  <MaterialIcons name="payment" size={26} color="#fff" />
 
-                <Text style={styles.funcText}>Payments</Text>
-              </TouchableOpacity>
+                  <Text style={styles.funcText}>Payments</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity style={styles.funcBlock}>
+                  <Ionicons name="settings-outline" size={26} color="#fff" />
+                  <Text style={styles.funcText}>Settings</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View>
-              <TouchableOpacity style={styles.funcBlock}>
-                <Ionicons name="settings-outline" size={26} color="#fff" />
-                <Text style={styles.funcText}>Settings</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.funcRow}>
-            <View>
-              <TouchableOpacity style={styles.funcBlock}>
-                <MaterialIcons name="card-giftcard" size={26} color="#fff" />
-                <Text style={styles.funcText}>Coupons & Gift</Text>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity style={styles.funcBlock}>
-                <Ionicons name="help-circle-outline" size={26} color="#fff" />
-                <Text style={styles.funcText}>Notifications</Text>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity style={styles.funcBlock}>
-                <Ionicons name="paper-plane-outline" size={26} color="#fff" />
-                <Text style={styles.funcText}>Give Feedback</Text>
-              </TouchableOpacity>
+            <View style={styles.funcRow}>
+              <View>
+                <TouchableOpacity style={styles.funcBlock}>
+                  <MaterialIcons name="card-giftcard" size={26} color="#fff" />
+                  <Text style={styles.funcText}>Coupons & Gift</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity style={styles.funcBlock}>
+                  <Ionicons name="help-circle-outline" size={26} color="#fff" />
+                  <Text style={styles.funcText}>Notifications</Text>
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity style={styles.funcBlock}>
+                  <Ionicons name="paper-plane-outline" size={26} color="#fff" />
+                  <Text style={styles.funcText}>Give Feedback</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
-      </View>
+      </SafeAreaView>
       <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
         <View style={styles.overlay} />
       </TouchableWithoutFeedback>

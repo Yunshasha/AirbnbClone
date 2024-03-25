@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useLayoutEffect, useMemo } from "react";
 import { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { defaultStyles } from "@/constants/Styles";
@@ -8,6 +8,7 @@ import listingGeoData from "@/assets/data/airbnb-listings.geo.json";
 import MapView from "react-native-map-clustering";
 import listingGeoProp from "@/interfaces/listingGeo";
 import Colors from "@/constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
 const ListingsMap = () => {
   const router = useRouter();
@@ -19,6 +20,11 @@ const ListingsMap = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "",
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={22} color={"#000"} />
+        </TouchableOpacity>
+      ),
     });
   }, []);
   return (

@@ -1,4 +1,11 @@
-import { View, Text, StatusBar, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StatusBar,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
 import { defaultStyles } from "@/constants/Styles";
@@ -15,27 +22,29 @@ const Page = () => {
     });
   }, []);
   return (
-    <View style={[defaultStyles.container, { marginTop: height }]}>
-      <Text style={styles.inbox}>Inbox</Text>
-      <Text
-        style={{
-          fontFamily: "mon",
-          color: Colors.grey,
-          fontSize: 15,
-          marginTop: 8,
-          paddingHorizontal: 14,
-        }}
-      >
-        {" "}
-        Messages from your host will appear here.
-      </Text>
-      <View style={{ marginHorizontal: 10 }}>
-        <Image
-          source={require("@/assets/images/inboxImg.png")}
-          style={{ width: "100%" }}
-        />
+    <SafeAreaView style={defaultStyles.container}>
+      <View style={[defaultStyles.container, { marginTop: height }]}>
+        <Text style={styles.inbox}>Inbox</Text>
+        <Text
+          style={{
+            fontFamily: "mon",
+            color: Colors.grey,
+            fontSize: 15,
+            marginTop: 8,
+            paddingHorizontal: 14,
+          }}
+        >
+          {" "}
+          Messages from your host will appear here.
+        </Text>
+        <View style={{ marginHorizontal: 10 }}>
+          <Image
+            source={require("@/assets/images/inboxImg.png")}
+            style={{ width: "100%" }}
+          />
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

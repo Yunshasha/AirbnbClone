@@ -1,10 +1,11 @@
+import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import { Stack, router, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
-import { TouchableOpacity, View, useColorScheme } from "react-native";
+import { TouchableOpacity, View, useColorScheme, Text } from "react-native";
 import { Provider } from "react-redux";
 
 export {
@@ -57,6 +58,31 @@ function RootLayoutNav() {
       />
       <Stack.Screen name="listing/[id]" />
       <Stack.Screen name="(modals)/listingMaps" />
+      {/* 
+      <Stack.Screen
+        name="(modals)/editing"
+        options={{
+          title: "",
+
+          headerTransparent: true,
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ marginRight: 10 }}
+              onPress={() => router.back()}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontFamily: "mon-sb",
+                  color: Colors.primary,
+                }}
+              >
+                Save
+              </Text>
+            </TouchableOpacity>
+          ),
+        }}
+      /> */}
       <Stack.Screen
         name="(modals)/booking"
         options={{
